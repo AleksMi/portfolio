@@ -993,46 +993,146 @@
             });
         });
 	</script>
-    <!-- Скрипт JS для отправки формы -->
-    <script>
-    document.getElementById('contactForm').addEventListener('submit', async function (e) {
-        e.preventDefault();
+<!-- Замените существующий скрипт отправки формы на этот: -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    
+    if (!contactForm) {
+        console.error('Форма не найдена!');
+        return;
+    }
 
+    // Добавляем обработчик отправки
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        console.log('Начало отправки формы...');
+
+        // Получаем значения полей
         const data = {
             name: document.getElementById('name').value.trim(),
             phone: document.getElementById('phone').value.trim(),
             email: document.getElementById('email').value.trim(),
             project: document.getElementById('project').value,
             message: document.getElementById('message').value.trim(),
-            consent: document.getElementById('consent').checked
+            consent: document.querySelector('input[type="checkbox"]').checked
         };
 
-        if (!data.name || !data.phone || !data.message || !data.consent) {
-            alert('Пожалуйста, заполните все обязательные поля и согласитесь с обработкой данных.');
+        console.log('Данные формы:', data);
+
+        // Базовая валидация
+        if (!data.name || !data.phone || !data.consent) {
+            alert('Пожалуйста, заполните обязательные поля (имя, телефон) и согласитесь с обработкой данных.');
             return;
         }
 
+        // Показываем пользователю, что идет отправка
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        submitButton.textContent = 'Отправка...';
+        submitButton.disabled = true;
+
         try {
+            console.log('Отправка запроса на сервер...');
+            
+            // Отправляем запрос на ваш сервер
             const response = await fetch('https://contact.antistatus.ru/contact', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
                 body: JSON.stringify(data)
             });
 
+            console.log('Статус ответа:', response.status);
+            console.log('Заголовки ответа:', response.headers);
+
             if (response.ok) {
-                alert('Заявка отправлена. Я свяжусь с вами.');
-                this.reset();
+                const result = await response.json();
+                console.log('Успешный ответ:', result);
+                
+                alert('✅ Заявка успешно отправлена! Я свяжусь с вами в ближайшее время.');
+                contactForm.reset();
             } else {
-                const errData = await response.json();
-                alert('Ошибка отправки: ' + (errData.error || 'Попробуйте позже.'));
+                // Пробуем получить текст ошибки
+                let errorText = 'Ошибка отправки';
+                try {
+                    const errorData = await response.json();
+                    errorText = errorData.error || errorData.message || `Ошибка ${response.status}`;
+                } catch {
+                    errorText = `Ошибка сервера: ${response.status} ${response.statusText}`;
+                }
+                
+                console.error('Ошибка сервера:', errorText);
+                alert('❌ ' + errorText);
             }
-        } catch (err) {
-            alert('Сервер недоступен.');
+        } catch (error) {
+            console.error('Ошибка сети:', error);
+            
+            // Проверяем, доступен ли сервер
+            try {
+                // Пробуем простой GET запрос для проверки доступности
+                const testResponse = await fetch('https://contact.antistatus.ru/', {
+                    method: 'HEAD',
+                    mode: 'no-cors' // Безопасный режим для проверки
+                });
+                console.log('Сервер доступен (HEAD запрос прошел)');
+            } catch (testError) {
+                console.error('Сервер недоступен:', testError);
+            }
+            
+            // Предлагаем альтернативный способ связи
+            alert('⚠️ Сервер временно недоступен. Пожалуйста, свяжитесь со мной напрямую:\n\n📱 WhatsApp: +7 (495) 123-45-67\n✉️ Telegram: @telegram\n📧 Email: info@smarthouse-pro.ru');
+        } finally {
+            // Восстанавливаем кнопку
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
         }
     });
-    </script>
+
+    // Добавляем маску для телефона
+    const phoneInput = document.getElementById('phone');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', function(e) {
+            let value = this.value.replace(/\D/g, '');
+            
+            if (value.length === 0) {
+                this.value = '';
+                return;
+            }
+            
+            let formattedValue = '+7 (';
+            
+            if (value.length > 1) {
+                formattedValue += value.substring(1, 4);
+            }
+            if (value.length >= 4) {
+                formattedValue += ') ' + value.substring(4, 7);
+            }
+            if (value.length >= 7) {
+                formattedValue += '-' + value.substring(7, 9);
+            }
+            if (value.length >= 9) {
+                formattedValue += '-' + value.substring(9, 11);
+            }
+            
+            this.value = formattedValue;
+        });
+    }
+
+    // Добавляем поле для галочки согласия
+    const consentCheckbox = document.querySelector('input[type="checkbox"]');
+    if (consentCheckbox) {
+        consentCheckbox.id = 'consent';
+        consentCheckbox.name = 'consent';
+        consentCheckbox.required = true;
+    }
+});
+</script>
 </body>
 </html>
+
 
 
 
