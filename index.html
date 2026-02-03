@@ -308,8 +308,134 @@
         </div>
     </section>
 
+	<!-- Профессиональные сертификаты -->
+	<div id="imageModal" class="modal" onclick="closeModal()">
+		<div class="modal-content" onclick="event.stopPropagation()">
+			<span class="close-btn" onclick="closeModal()">&times;</span>
+			<img id="modalImage" class="w-full rounded-lg">
+		</div>
+	</div>
+	<section id="certificates" class="py-20">
+		<div class="container mx-auto px-6">
+
+			<div class="text-center mb-16">
+				<h2 class="text-3xl font-bold mb-4">Профессиональные сертификаты</h2>
+				<p class="text-gray-600 max-w-2xl mx-auto">
+                Официальные подтверждения квалификации и опыта в системах автоматизации и слаботочных решениях
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+				<!-- Карточка -->
+				<div class="service-card bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
+					<img src="https://raw.githubusercontent.com/AleksMi/portfolio/ba4d7c466e4d15a1cd93354574ebad0aa73ae0a5/images/cert.jpg"
+                     alt="KNX Partner"
+                     class="w-full h-64 object-contain bg-gray-100 p-4 cursor-pointer"
+                     onclick="openModal(this.src)">
+
+					<div class="p-6 flex flex-col flex-grow">
+						<h3 class="text-center font-semibold mb-3">KNX Partner</h3>
+						<p class="text-gray-600 ttext-center leading-relaxed">
+                        Международная сертификация KNX Association.
+                        Проектирование, программирование и ввод в эксплуатацию
+                        систем автоматизации зданий KNX.
+						</p>
+					</div>
+				</div>
+
+				<!-- Карточка -->
+				<div class="service-card bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
+					<img src="https://raw.githubusercontent.com/AleksMi/portfolio/ba4d7c466e4d15a1cd93354574ebad0aa73ae0a5/images/cert.jpg"
+						 alt="Control4 Certified"
+						 class="w-full h-64 object-contain bg-gray-100 p-4 cursor-pointer"
+						 onclick="openModal(this.src)">
+
+					<div class="p-6 flex flex-col flex-grow">
+						<h3 class="text-center font-semibold mb-3">Control4 Certified</h3>
+						<p class="text-gray-600 text-center leading-relaxed">
+                        Официальная сертификация Control4.
+                        Настройка, интеграция и обслуживание
+                        систем умного дома премиального уровня.
+						</p>
+					</div>
+				</div>
+
+				<!-- Карточка -->
+				<div class="service-card bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
+					<img src="https://raw.githubusercontent.com/AleksMi/portfolio/ba4d7c466e4d15a1cd93354574ebad0aa73ae0a5/images/cert.jpg"
+						 alt="Видеонаблюдение и СКУД"
+						 class="w-full h-64 object-contain bg-gray-100 p-4 cursor-pointer"
+						 onclick="openModal(this.src)">
+
+					<div class="p-6 flex flex-col flex-grow">
+						<h3 class="text-center font-semibold mb-3">Видеонаблюдение и СКУД</h3>
+						<p class="text-gray-600 text-center leading-relaxed">
+                        Профессиональная подготовка по системам
+                        видеонаблюдения, контроля доступа и
+                        слаботочным инженерным системам.
+						</p>
+					</div>
+				</div>
+
+				<!-- Карточка -->
+				<div class="service-card bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
+					<img src="https://raw.githubusercontent.com/AleksMi/portfolio/ba4d7c466e4d15a1cd93354574ebad0aa73ae0a5/images/cert.jpg"
+                     alt="KNX Partner"
+                     class="w-full h-64 object-contain bg-gray-100 p-4 cursor-pointer"
+                     onclick="openModal(this.src)">
+
+					<div class="p-6 flex flex-col flex-grow">
+						<h3 class="text-center font-semibold mb-3">KNX Partner</h3>
+						<p class="text-gray-600 text-center leading-relaxed">
+                        Международная сертификация KNX Association.
+                        Проектирование, программирование и ввод в эксплуатацию
+                        систем автоматизации зданий KNX.
+						</p>
+					</div>
+				</div>
+
+				<!-- Карточка -->
+				<div class="service-card bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
+					<img src="https://raw.githubusercontent.com/AleksMi/portfolio/ba4d7c466e4d15a1cd93354574ebad0aa73ae0a5/images/cert.jpg"
+						 alt="Control4 Certified"
+						 class="w-full h-64 object-contain bg-gray-100 p-4 cursor-pointer"
+						 onclick="openModal(this.src)">
+
+					<div class="p-6 flex flex-col flex-grow">
+						<h3 class="text-center font-semibold mb-3">Control4 Certified</h3>
+						<p class="text-gray-600 text-center leading-relaxed">
+                        Официальная сертификация Control4.
+                        Настройка, интеграция и обслуживание
+                        систем умного дома премиального уровня.
+						</p>
+					</div>
+				</div>
+
+				<!-- Карточка -->
+				<div class="service-card bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
+					<img src="https://raw.githubusercontent.com/AleksMi/portfolio/ba4d7c466e4d15a1cd93354574ebad0aa73ae0a5/images/cert.jpg"
+						 alt="Видеонаблюдение и СКУД"
+						 class="w-full h-64 object-contain bg-gray-100 p-4 cursor-pointer"
+						 onclick="openModal(this.src)">
+
+					<div class="p-6 flex flex-col flex-grow">
+						<h3 class="text-center font-semibold mb-3">Видеонаблюдение и СКУД</h3>
+						<p class="text-gray-600 text-center leading-relaxed">
+                        Профессиональная подготовка по системам
+                        видеонаблюдения, контроля доступа и
+                        слаботочным инженерным системам.
+						</p>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</section>
+
+
     <!-- Услуги -->
-    <section id="services" class="py-20">
+    <section id="services" class="py-20 bg-gray-50">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold mb-4">Мои услуги</h2>
@@ -407,7 +533,7 @@
     </section>
 
     <!-- Портфолио -->
-    <section id="portfolio" class="py-20 bg-gray-50">
+    <section id="portfolio" class="py-20">
         <div class="container mx-auto px-6">
             <div class="text-center mb-10">
                 <h2 class="text-3xl font-bold mb-4">Портфолио проектов</h2>
@@ -528,7 +654,7 @@
     </section>
 
     <!-- Преимущества -->
-    <section id="advantages" class="py-20">
+    <section id="advantages" class="py-20 bg-gray-50">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold mb-4">Почему выбирают меня</h2>
@@ -590,7 +716,7 @@
                         </li>
                     </ul>
                 </div>
-                
+
                 <div class="bg-white p-8 rounded-lg shadow-md">
                     <h3 class="text-xl font-semibold mb-6">Отзывы клиентов</h3>
                     <div class="testimonial-slider">
@@ -679,7 +805,7 @@
     </section>
 
     <!-- Контактная форма -->
-    <section id="contact" class="py-20 bg-gray-50">
+    <section id="contact" class="py-20">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold mb-4">Связаться со мной</h2>
@@ -1157,6 +1283,16 @@ document.addEventListener('DOMContentLoaded', function() {
         consentCheckbox.required = true;
     }
 });
+</script>
+<script>
+function openModal(src) {
+    document.getElementById('modalImage').src = src;
+    document.getElementById('imageModal').style.display = 'flex';
+}
+
+function closeModal() {
+    document.getElementById('imageModal').style.display = 'none';
+}
 </script>
 </body>
 </html>
